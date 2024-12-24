@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbCategory
 {
-    public int? CategoryId { get; set; } = null!;
+    public int CategoryId { get; set; }
 
     public string? Name { get; set; }
 
@@ -13,10 +13,7 @@ public partial class TbCategory
 
     public string? Image { get; set; }
 
-   
-
-
+    public bool? IsActive { get; set; }
 
     public virtual TbBlog? TbBlog { get; set; }
-    public bool? IsActive { get; set; }
 }

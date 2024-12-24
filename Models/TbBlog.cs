@@ -5,13 +5,13 @@ namespace Flower.Models;
 
 public partial class TbBlog
 {
-    public int? BlogId { get; set; } = null!;
+    public int BlogId { get; set; }
 
     public string? Title { get; set; }
 
     public string? Alias { get; set; }
 
-    public string? CategoryId { get; set; }
+    public int? CategoryId { get; set; }
 
     public string? Description { get; set; }
 
@@ -33,7 +33,7 @@ public partial class TbBlog
 
     public string? ModifiedBy { get; set; }
 
-    public string? AccountId { get; set; }
+    public int? AccountId { get; set; }
 
     public bool? IsActive { get; set; }
 

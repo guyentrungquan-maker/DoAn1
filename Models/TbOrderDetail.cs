@@ -5,17 +5,17 @@ namespace Flower.Models;
 
 public partial class TbOrderDetail
 {
-    public string OrderDetailId { get; set; } = null!;
+    public int OrderDetailId { get; set; }
 
-    public string? OrderId { get; set; }
+    public int? OrderId { get; set; }
 
-    public string? ProductId { get; set; }
+    public int? ProductId { get; set; }
 
-    public string? PaymentId { get; set; }
+    public int? PaymentId { get; set; }
 
     public string? Price { get; set; }
 
-    public string? Quantity { get; set; }
+    public int? Quantity { get; set; }
 
     public virtual TbOrder OrderDetail { get; set; } = null!;
 

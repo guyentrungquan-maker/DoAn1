@@ -2,7 +2,7 @@ using Flower.Models;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<Bainhom1Context>(options =>
+builder.Services.AddDbContext<FlowerContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });

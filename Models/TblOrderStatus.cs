@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TblOrderStatus
 {
-    public string OrderStatusId { get; set; } = null!;
+    public int OrderStatusId { get; set; }
 
     public string? Name { get; set; }
 

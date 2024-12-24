@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbAccount
 {
-    public int? AccountId { get; set; } = null!;
+    public int AccountId { get; set; }
 
     public string? Username { get; set; }
 
@@ -21,9 +21,9 @@ public partial class TbAccount
 
     public string? IsActive { get; set; }
 
-    public string? ShippingId { get; set; }
+    public int? ShippingId { get; set; }
 
-    public string? PaymentId { get; set; }
+    public int? PaymentId { get; set; }
 
     public virtual TbBlog Account { get; set; } = null!;
 }

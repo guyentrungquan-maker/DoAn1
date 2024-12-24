@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbShip
 {
-    public string ShippingId { get; set; } = null!;
+    public int ShippingId { get; set; }
 
     public string? CustomerName { get; set; }
 
@@ -15,7 +15,7 @@ public partial class TbShip
 
     public string? Adress { get; set; }
 
-    public string? OrderDetailId { get; set; }
+    public int? OrderDetailId { get; set; }
 
     public virtual TbOrderDetail? TbOrderDetail { get; set; }
 }

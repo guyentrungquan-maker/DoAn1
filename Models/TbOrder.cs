@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbOrder
 {
-    public string OrderId { get; set; } = null!;
+    public int OrderId { get; set; }
 
     public string? Code { get; set; }
 
@@ -17,19 +17,19 @@ public partial class TbOrder
 
     public string? TotalAmount { get; set; }
 
-    public string? Quanlity { get; set; }
+    public int? Quanlity { get; set; }
 
-    public string? OrderStatusId { get; set; }
+    public int? OrderStatusId { get; set; }
 
-    public string? CreatedDate { get; set; }
+    public DateOnly? CreatedDate { get; set; }
 
     public string? CreatedBy { get; set; }
 
-    public string? ModifiedDate { get; set; }
+    public DateOnly? ModifiedDate { get; set; }
 
     public string? ModifiedBy { get; set; }
 
-    public string? WishListId { get; set; }
+    public int? WishListId { get; set; }
 
     public virtual TbWishList Order { get; set; } = null!;
 

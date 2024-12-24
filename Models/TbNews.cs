@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbNews
 {
-    public int? NewsId { get; set; } = null!;
+    public int NewsId { get; set; }
 
     public string? Title { get; set; }
 
@@ -25,15 +25,15 @@ public partial class TbNews
 
     public string? SeoKeywords { get; set; }
 
-    public string? CreatedDate { get; set; }
+    public DateOnly? CreatedDate { get; set; }
 
     public string? CreatedBy { get; set; }
 
-    public string? ModifiedDate { get; set; }
+    public DateOnly? ModifiedDate { get; set; }
 
     public string? ModifiedBy { get; set; }
 
-    public string? IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
     public virtual TbBlog News { get; set; } = null!;
 }

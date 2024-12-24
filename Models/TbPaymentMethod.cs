@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbPaymentMethod
 {
-    public string PaymentId { get; set; } = null!;
+    public int PaymentId { get; set; }
 
     public string? PaymentMethod { get; set; }
 
@@ -13,7 +13,7 @@ public partial class TbPaymentMethod
 
     public string? Vat { get; set; }
 
-    public string? DiscountId { get; set; }
+    public int? DiscountId { get; set; }
 
     public string? TotalAmount { get; set; }
 

@@ -5,13 +5,13 @@ namespace Flower.Models;
 
 public partial class TbDiscount
 {
-    public string DiscountId { get; set; } = null!;
+    public int DiscountId { get; set; }
 
     public string? DiscountAmount { get; set; }
 
     public string? Vat { get; set; }
 
-    public string? Quanlity { get; set; }
+    public int? Quanlity { get; set; }
 
     public string? TotalAmount { get; set; }
 

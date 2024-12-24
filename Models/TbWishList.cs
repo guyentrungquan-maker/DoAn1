@@ -5,9 +5,9 @@ namespace Flower.Models;
 
 public partial class TbWishList
 {
-    public string WishListId { get; set; } = null!;
+    public int WishListId { get; set; }
 
-    public string? Quanlity { get; set; }
+    public int? Quanlity { get; set; }
 
     public string? Amount { get; set; }
 

@@ -5,7 +5,7 @@ namespace Flower.Models;
 
 public partial class TbProductCategory
 {
-    public int? CategoryProductld { get; set; } = null!;
+    public int CategoryProductld { get; set; }
 
     public string? Title { get; set; }
 
@@ -17,15 +17,15 @@ public partial class TbProductCategory
 
     public string? Position { get; set; }
 
-    public string? CreatedDate { get; set; }
+    public DateOnly? CreatedDate { get; set; }
 
     public string? CreatedBy { get; set; }
 
-    public string? ModifiedDate { get; set; }
+    public DateOnly? ModifiedDate { get; set; }
 
     public string? ModifiedBy { get; set; }
 
-    public string? IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
     public virtual TbProduct CategoryProductldNavigation { get; set; } = null!;
 }
