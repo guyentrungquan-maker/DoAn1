@@ -1,0 +1,76 @@
+﻿@using Flower.Models;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<TbBlog> blogRelated = ViewBag.blogRelated;
+}
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>ABOUT US</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">ABOUT US</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="banner-frame">
+                    <img class="img-fluid" src="~/images/banner-01.jpg" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title-top">@Model.Title</h2>
+                @Html.Raw(Model.Detail)
+            </div>
+        </div>
+        <div class="row my-4 mt-5">
+            <div class="col-12">
+                <h2 class="noo-sh-title">Bài viết liên quan</h2>
+            </div>
+
+            @foreach (var item in blogRelated)
+            {
+             string sUrl = $"/blog/{item.Alias}-{item.BlogId}.html";
+            <div class="col-sm-6 col-lg-3">
+                <div class="hover-team">
+                    <div class="our-team">
+                            <img src="@Url.Content(item.Image)" alt="" />
+                        <div class="team-content">
+                            <h3 class="title">Williamson</h3> <span class="post">@item.Title</span>
+                        </div>
+                        <ul class="social">
+                            <li>
+                                <a href="@sUrl" class="fab fa-facebook"></a>
+                            </li>
+                            <li>
+                                <a href="@sUrl" class="fab fa-twitter"></a>
+                            </li>
+                            <li>
+                                <a href="@sUrl" class="fab fa-google-plus"></a>
+                            </li>
+                            <li>
+                               <a href="@sUrl" class="fab fa-youtube"></a>
+                            </li>
+                        </ul>
+                        <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                    </div>
+                    <div class="team-description">
+                            @Html.Raw(item.Description)
+                    </div>
+                    <hr class="my-0">
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
