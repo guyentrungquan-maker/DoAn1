@@ -47,6 +47,7 @@ public partial class FlowerContext : DbContext
 
     public virtual DbSet<TblOrderStatus> TblOrderStatuses { get; set; }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TbAccount>(entity =>
@@ -82,16 +83,13 @@ public partial class FlowerContext : DbContext
 
             entity.ToTable("tb_Blog");
 
-            entity.Property(e => e.BlogId)
-                .ValueGeneratedNever()
-                .HasColumnName("BlogID");
+            entity.Property(e => e.BlogId).HasColumnName("BlogID");
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
-            entity.HasOne(d => d.Blog).WithOne(p => p.TbBlog)
-                .HasForeignKey<TbBlog>(d => d.BlogId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_tb_Blog_tb_Category");
+            entity.HasOne(d => d.Category).WithMany(p => p.TbBlogs)
+                .HasForeignKey(d => d.CategoryId)
+                .HasConstraintName("FK_tb_Blog_tb_Category1");
         });
 
         modelBuilder.Entity<TbCategory>(entity =>

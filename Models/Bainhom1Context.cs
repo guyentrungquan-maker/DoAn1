@@ -152,10 +152,10 @@ public partial class Bainhom1Context : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength();
 
-            entity.HasOne(d => d.Blog).WithOne(p => p.TbBlog)
-                .HasForeignKey<TbBlog>(d => d.BlogId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_tb_Blog_tb_Category");
+            //entity.HasOne(d => d.BlogId).WithOne(p => p.TbBlog)
+            //    .HasForeignKey<TbBlog>(d => d.BlogId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_tb_Blog_tb_Category");
         });
 
         modelBuilder.Entity<TbCategory>(entity =>

@@ -15,5 +15,5 @@ public partial class TbCategory
 
     public bool? IsActive { get; set; }
 
-    public virtual TbBlog? TbBlog { get; set; }
+    public virtual ICollection<TbBlog> TbBlogs { get; set; } = new List<TbBlog>();
 }

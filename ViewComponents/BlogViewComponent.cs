@@ -14,8 +14,7 @@ namespace Flower.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var items = _context.TbBlogs.Where(m => m.IsActive == true)
-                .ToList();
+            var items = _context.TbBlogs.Where(m => m.IsActive == true).ToList();
             return await Task.FromResult<IViewComponentResult>(View(items));
         }
     }
