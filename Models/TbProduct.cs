@@ -21,7 +21,7 @@ public partial class TbProduct
 
     public bool IsActive { get; set; }
 
-    public bool? IsNew { get; set; }
+    public bool IsNew { get; set; }
 
     public bool? IsSale { get; set; }
 
