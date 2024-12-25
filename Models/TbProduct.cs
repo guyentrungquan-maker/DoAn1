@@ -19,7 +19,7 @@ public partial class TbProduct
 
     public int? UnitlnStock { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public bool? IsNew { get; set; }
 
