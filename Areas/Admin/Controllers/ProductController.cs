@@ -10,23 +10,22 @@ using Flower.Models;
 namespace Flower.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BlogController : Controller
+    public class ProductController : Controller
     {
         private readonly FlowerContext _context;
 
-        public BlogController(FlowerContext context)
+        public ProductController(FlowerContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Blog
+        // GET: Admin/Product
         public async Task<IActionResult> Index()
         {
-            var flowerContext = _context.TbBlogs.Include(t => t.Category);
-            return View(await flowerContext.ToListAsync());
+            return View(await _context.TbProducts.ToListAsync());
         }
 
-        // GET: Admin/Blog/Details/5
+        // GET: Admin/Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,43 +33,39 @@ namespace Flower.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBlog = await _context.TbBlogs
-                .Include(t => t.Category)
-                .FirstOrDefaultAsync(m => m.BlogId == id);
-            if (tbBlog == null)
+            var tbProduct = await _context.TbProducts
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (tbProduct == null)
             {
                 return NotFound();
             }
 
-            return View(tbBlog);
+            return View(tbProduct);
         }
 
-        // GET: Admin/Blog/Create
+        // GET: Admin/Product/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.TbCategories, "CategoryId", "CategoryId");
             return View();
         }
 
-        // POST: Admin/Blog/Create
+        // POST: Admin/Product/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Alias,CategoryId,Description,Detail,Image,SeoTitle,SeoDescription,SeoKeywords,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy,AccountId,IsActive")] TbBlog tbBlog)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Price,Description,Image,IsBestSeller,UnitlnStock,IsActive,IsNew,IsSale")] TbProduct tbProduct)
         {
             if (ModelState.IsValid)
             {
-                tbBlog.Alias = Flower.Utilities.Function.TittleGenerationAlias(tbBlog.Title).TrimEnd('-');
-                _context.Add(tbBlog);
+                _context.Add(tbProduct);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.TbCategories, "CategoryId", "CategoryId", tbBlog.CategoryId);
-            return View(tbBlog);
+            return View(tbProduct);
         }
 
-        // GET: Admin/Blog/Edit/5
+        // GET: Admin/Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +73,22 @@ namespace Flower.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBlog = await _context.TbBlogs.FindAsync(id);
-            if (tbBlog == null)
+            var tbProduct = await _context.TbProducts.FindAsync(id);
+            if (tbProduct == null)
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.TbCategories, "CategoryId", "CategoryId", tbBlog.CategoryId);
-            return View(tbBlog);
+            return View(tbProduct);
         }
 
-        // POST: Admin/Blog/Edit/5
+        // POST: Admin/Product/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Alias,CategoryId,Description,Detail,Image,SeoTitle,SeoDescription,SeoKeywords,CreatedDate,CreatedBy,ModifiedDate,ModifiedBy,AccountId,IsActive")] TbBlog tbBlog)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Price,Description,Image,IsBestSeller,UnitlnStock,IsActive,IsNew,IsSale")] TbProduct tbProduct)
         {
-            if (id != tbBlog.BlogId)
+            if (id != tbProduct.ProductId)
             {
                 return NotFound();
             }
@@ -103,13 +97,12 @@ namespace Flower.Areas.Admin.Controllers
             {
                 try
                 {
-                    tbBlog.Alias = Flower.Utilities.Function.TittleGenerationAlias(tbBlog.Title).TrimEnd('-');
-                    _context.Update(tbBlog);
+                    _context.Update(tbProduct);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TbBlogExists(tbBlog.BlogId))
+                    if (!TbProductExists(tbProduct.ProductId))
                     {
                         return NotFound();
                     }
@@ -120,11 +113,10 @@ namespace Flower.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.TbCategories, "CategoryId", "CategoryId", tbBlog.CategoryId);
-            return View(tbBlog);
+            return View(tbProduct);
         }
 
-        // GET: Admin/Blog/Delete/5
+        // GET: Admin/Product/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,35 +124,34 @@ namespace Flower.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBlog = await _context.TbBlogs
-                .Include(t => t.Category)
-                .FirstOrDefaultAsync(m => m.BlogId == id);
-            if (tbBlog == null)
+            var tbProduct = await _context.TbProducts
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (tbProduct == null)
             {
                 return NotFound();
             }
 
-            return View(tbBlog);
+            return View(tbProduct);
         }
 
-        // POST: Admin/Blog/Delete/5
+        // POST: Admin/Product/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tbBlog = await _context.TbBlogs.FindAsync(id);
-            if (tbBlog != null)
+            var tbProduct = await _context.TbProducts.FindAsync(id);
+            if (tbProduct != null)
             {
-                _context.TbBlogs.Remove(tbBlog);
+                _context.TbProducts.Remove(tbProduct);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TbBlogExists(int id)
+        private bool TbProductExists(int id)
         {
-            return _context.TbBlogs.Any(e => e.BlogId == id);
+            return _context.TbProducts.Any(e => e.ProductId == id);
         }
     }
 }

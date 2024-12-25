@@ -39,7 +39,7 @@ public partial class TbBlog
 
     public int? AccountId { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public virtual TbCategory? Category { get; set; }
 
