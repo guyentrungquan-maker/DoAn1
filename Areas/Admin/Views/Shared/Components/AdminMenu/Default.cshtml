@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Flower.Models.TbAdminMenu>
+
+@foreach (var item in Model.Where(m => m.IsActive == true)) 
+{
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="@Url.Action(item.ActionName, item.ControllerName, new { area = item.Areaname })" class="nav-link active">
+                <i class="@item.Icon"></i>
+                <p>@item.ItemName</p>
+            </a>
+        </li>
+    </ul>
+}
+
